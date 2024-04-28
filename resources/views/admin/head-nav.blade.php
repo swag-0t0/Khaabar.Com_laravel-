@@ -27,7 +27,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{url('adminuserprofile')}}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -37,7 +37,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{url('adminuserprofile')}}">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -72,7 +72,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{url('admin.adminhome')}}">
+        <a class="nav-link " href="{{url('admin')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -81,22 +81,22 @@
   
       <li class="nav-item">
        
-            <a class="nav-link collapsed" href="{{url('admin.form')}}">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
+            <a class="nav-link collapsed" href="{{url('adminform')}}">
+              <i class="bi bi-circle"></i><span>Manage Foods</span>
             </a>
                 
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">         
-           <a class="nav-link collapsed" href="{{url('admin.tables')}}">
+           <a class="nav-link collapsed" href="{{url('admintables')}}">
               <i class="bi bi-circle"></i>
-              <span>general Table</span>
+              <span>All Users</span>
             </a>      
       </li><!-- End Tables Nav -->
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url('admin.userprofile')}}">
+        <a class="nav-link collapsed" href="{{url('adminuserprofile')}}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

@@ -244,6 +244,12 @@ h6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* newly added AND THIS THING IS WORKING CORRECTLY*/
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 20%; /* Set the width of the Action column to 25% */
+  
+}
 /* Alerts */
 .alert-heading {
   font-weight: 500;

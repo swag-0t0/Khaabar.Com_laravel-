@@ -35,7 +35,7 @@
    
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" href="{{url('/cart')}}">
                     <i class="bi bi-gear"></i>
                     <span>My Cart</span>
                   </a>
@@ -55,16 +55,13 @@
    
         </ul>
                 {{-- end of dropdown --}}
-
-        
+      
       </div>
     </div>
   </nav>
 @endsection
 
 @extends('home.master')
-
-
 
 @section('footer')
     <section class="py-0 pt-7 bg-1000">

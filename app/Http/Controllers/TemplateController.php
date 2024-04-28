@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Advertise;
 
 class TemplateController extends Controller
 {
     public function index()
     {
-        return view('home.home');
+        $data=advertise::all();
+        return view('home.home',compact('data'));
     }
     public function login()
     {

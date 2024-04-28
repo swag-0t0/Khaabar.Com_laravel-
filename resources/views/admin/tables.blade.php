@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / General </title>
+  <title>All Users </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -18,8 +18,7 @@
   <link href="admin-assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="admin-assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="admin-assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="admin-assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="admin-assets/vendor/remixicon/remixicon.css" rel="stylesheet"> 
+  <link href="admin-assets/vendor/quill/quill.bubble.css" rel="stylesheet"> 
   <link href="admin-assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
@@ -36,12 +35,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>General Tables</h1>
+      <h1>All Users</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="admin-index.html">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">General</li>
+          <li class="breadcrumb-item active">Users</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -54,7 +53,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Table with hoverable rows</h5>
+              <h5 class="card-title">All the registered users</h5>
 
               <!-- Table with hoverable rows -->
               <table class="table table-hover">
@@ -62,47 +61,39 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Registered</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
+
+                  @php
+                      $counter=1;
+                  @endphp
+
+                  @foreach($data as $data)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <th scope="row">{{ $counter++ }}</th>
+                    <td>{{$data->name}}</td>
+                    @if($data->role=="1")
+                    <td>Admin</td>
+                    @else
+                    <td>Customer</td>
+                    @endif
+                    <td>{{$data->created_at}}</td>
+                    @if($data->role=="0")
+                    <td>
+                      <div class="button-group" role="group">
+                          <a href="{{url('/deleteuser',$data->id)}}" class="btn btn-sm "><i class="bi bi-trash "></i></a> <!-- Delete Icon -->
+                           <a href="#" class="btn btn-sm "><i class="bi bi-pencil "></i></a> <!-- Update Icon -->
+                      </div>
+                    </td>
+                    @endif
+                    
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
+                  @endforeach
+
                 </tbody>
               </table>
               <!-- End Table with hoverable rows -->
@@ -120,7 +111,7 @@
 
   <!-- Vendor JS Files -->
 
-  <script src="admin-ssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="admin-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="admin-assets/vendor/quill/quill.min.js"></script>
   <script src="admin-assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="admin-assets/vendor/tinymce/tinymce.min.js"></script>

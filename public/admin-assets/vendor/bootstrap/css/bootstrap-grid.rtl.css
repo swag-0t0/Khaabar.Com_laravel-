@@ -103,7 +103,7 @@
 
 .row-cols-5 > * {
   flex: 0 0 auto;
-  width: 20%;
+  width: 25%;
 }
 
 .row-cols-6 > * {

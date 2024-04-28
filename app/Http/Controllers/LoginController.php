@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Advertise;
+
 use Hash;
 use Session;
 
@@ -39,6 +41,8 @@ class LoginController extends Controller
 
     public function loginuser(Request $request)
     {
+        $data=advertise::all();
+
         $request->validate([
             'email'=>'required|email',
             'password'=>'required|min:4|max:32'
@@ -49,9 +53,9 @@ class LoginController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginid', $user->id);
                 if ($user->role === "0") {
-                    return view('home.after-user-login');
+                    return view('home.after-user-login',compact('data'));
                 } else {
-                    return view('home.after-admin-login');
+                    return view('home.after-admin-login',compact('data'));
                 }
             }
         }

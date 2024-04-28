@@ -1,7 +1,7 @@
 <section id="testimonial">
     <div class="container">
       <div class="row h-100">
-        <div class="col-lg-7 mx-auto text-center mb-6">
+        <div class="col-lg-7 mx-auto text-center mb-4">
           <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Featured Restaurants</h5>
         </div>
       </div>

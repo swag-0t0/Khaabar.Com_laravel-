@@ -22,11 +22,15 @@ Route::get('/login',[TemplateController::class,'login']);
 Route::get('/payment',[TemplateController::class,'payment']);
 Route::get('/cart',[TemplateController::class,'cart']);
 
+
 //routes for admin pages
 Route::get('/admin',[AdminController::class,'adminhome']);
 Route::get('/adminform',[AdminController::class,'adminform']);
 Route::get('/admintables',[AdminController::class,'admintables']);
 Route::get('/adminuserprofile',[AdminController::class,'adminuserprofile']);
+Route::get('/deleteuser/{id}',[AdminController::class,'deleteuser']);
+
+Route::post('/advertise_form',[AdminController::class,'advertise_form']);
 
 
 
@@ -35,3 +39,5 @@ Route::post('/registeruser',[LoginController::class,'registeruser'])->name('regi
 Route::post('/loginuser',[LoginController::class,'loginuser'])->name('loginuser');
 Route::get('/after-user-login',[LoginController::class,'after_user_login']);
 Route::get('/after-admin-login',[LoginController::class,'after_admin_login']);
+
+

@@ -1,65 +1,53 @@
 
 @section('nav')
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
-    <div class="container"><a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block"
-          src="assets/img/gallery/Logo.png" width="200px" height="60px" alt="logo" /><span
-          class="text-1000 fs-3 fw-bold ms-2 text-gradient"></span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-          class="navbar-toggler-icon"> </span></button>
-      <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
-        <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
-          <p class="mb-0 fw-bold text-lg-center">Deliver to: <i
-              class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location
-            </span><span>Mirpur 1 Bus Stand, Dhaka</span></p>
+    <div class="container">
+        <a class="navbar-brand d-inline-flex" href="index.html">
+            <img class="d-inline-block" src="assets/img/gallery/Logo.png" width="200px" height="60px" alt="logo" />
+            <span class="text-1000 fs-3 fw-bold ms-2 text-gradient"></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
+            <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
+                <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location</span><span>Mirpur 1 Bus Stand, Dhaka</span></p>
+            </div>
+            <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0 align-items-center">
+                <div class="input-group-icon pe-2 align-items-center">
+                    <i class="fas fa-search input-box-icon text-primary" style="vertical-align: middle;"></i>
+                    <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" />
+                </div>
+            </form>
+            <div>
+                <ul class="d-flex align-items-center" style="list-style-type: none;">
+                    <li class="nav-item dropdown pe-3">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{url('/admin')}}">
+                                    <i class="bi bi-gear"></i>
+                                    <span>DASHBOARD</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{url('/')}}">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0 align-items-center"">
-          <div class="input-group-icon pe-2 align-items-center">
-            <i class="fas fa-search input-box-icon text-primary" style="vertical-align: middle;"></i>
-            <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food"
-              aria-label="Search" />
-          </div>
-            
-        </form>
-       
-        {{-- 
-        ---------there will be created a dropdown for user thus may he/she logout        
-        --}}
-        <ul class="d-flex align-items-center" style="list-style-type: none;">
-           <li class="nav-item dropdown pe-3">
-   
-              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-               <!-- <img src="admin-assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">-->
-                <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-              </a> 
-   
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                <li>
-                  <a class="dropdown-item d-flex align-items-center" href="{{url('/admin')}}">
-                    <i class="bi bi-gear"></i>
-                    <span>DASHBOARD</span>
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>   
-                <li>
-                  <a class="dropdown-item d-flex align-items-center" href="{{url('/')}}">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Sign Out</span>
-                  </a>
-                </li>
-   
-              </ul>
-            </li>
-   
-        </ul>
-                {{-- end of dropdown --}}
-
-        
-      </div>
     </div>
-  </nav>
+</nav>
 @endsection
 
 @extends('home.master')

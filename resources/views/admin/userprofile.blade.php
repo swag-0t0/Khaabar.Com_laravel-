@@ -20,7 +20,7 @@
   <link href="admin-assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="admin-assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="admin-assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="admin-assets/vendor/remixicon/remixicon.css" rel="stylesheet"> 
+ 
   <link href="admin-assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
@@ -97,9 +97,6 @@
                     <div class="col-lg-3 col-md-4 label ">Full Name</div>
                     <div class="col-lg-9 col-md-8">Kevin Anderson</div>
                   </div>
-
-  
-                  
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Country</div>
@@ -261,7 +258,7 @@
 
   <!-- Vendor JS Files -->
 
-  <script src="admin-ssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="admin-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="admin-assets/vendor/quill/quill.min.js"></script>
   <script src="admin-assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="admin-assets/vendor/tinymce/tinymce.min.js"></script>

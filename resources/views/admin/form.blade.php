@@ -18,10 +18,8 @@
   <!-- Vendor CSS Files -->
   <link href="admin-assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="admin-assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="admin-assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="admin-assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="admin-assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="admin-assets/vendor/remixicon/remixicon.css" rel="stylesheet"> 
   <link href="admin-assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="admin-assets/css/adminstyle.css" rel="stylesheet">
@@ -35,12 +33,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Manage Foods</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="admin-index.html">Home</a></li>
           <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item active">Manage Foods</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -138,8 +136,6 @@
                   </div>
                 </div>
 
-              >
-
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Select</label>
                   <div class="col-sm-10">
@@ -151,7 +147,6 @@
                     </select>
                   </div>
                 </div>
-
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Submit Button</label>
@@ -166,6 +161,105 @@
           </div>
 
         </div>
+
+        {{-- new card for advertise section --}}
+        {{-- Form starts --}}
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage advertise Foods</h5>
+
+              <!-- General Form Elements -->
+              <form action="{{url('/advertise_form')}}" method="POST" enctype="multipart/form-data" >
+                @csrf
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Text1</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="text1" placeholder="first text">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Text2</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="text2" placeholder="second text">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="description" placeholder="Write description of the food">
+                  </div>
+                </div>
+             
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-3 col-form-label">Upload Image</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile" name="image" placeholder="Enter corresponding Image">
+                  </div>
+                </div>
+                <div class="row mb-3"> 
+                  <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-warning" value="save">Add this Item</button>
+                  </div>
+                </div>
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+        {{-- Form ends for advertise--}}
+
+        {{-- Form for Popular Items --}}
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage Popular Foods</h5>
+
+              <!-- General Form Elements -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-3 col-form-label">Upload Image</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Food Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Provider</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Price</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control">
+                  </div>
+                </div>
+             
+                
+                <div class="row mb-3"> 
+                  <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-warning">Add this Item</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+        {{-- End Form for Popualr Items --}}
 
         
       </div>
