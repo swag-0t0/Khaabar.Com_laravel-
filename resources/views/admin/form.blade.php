@@ -201,9 +201,46 @@
                 <div class="row mb-3"> 
                   <div class="col-sm-12 text-center">
                     <button type="submit" class="btn btn-warning" value="save">Add this Item</button>
+                    
                   </div>
                 </div>
               </form><!-- End General Form Elements -->
+
+                {{-- All the Items for and delete operation --}}
+
+              <h5 class="card-title">All the added Items</h5>
+
+              <!-- Table with hoverable rows -->
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Text1</th>
+                    <th scope="col">Text2</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  @foreach($data as $data)
+                  <tr>
+                    <td><img height="60px" width="80px" src="advertise_image/{{$data->image}}" alt=""></td>
+                    <td>{{$data->text1}}</td>
+                    <td>{{$data->text2}}</td>                  
+                    <td>
+                      <div class="button-group" role="group">
+                          <a href="{{url('/deleteadvertise',$data->id)}}" class="btn btn-sm "><i class="bi bi-trash "></i></a> <!-- Delete Icon -->
+                           <a href="#" class="btn btn-sm "><i class="bi bi-pencil "></i></a> <!-- Update Icon -->
+                      </div>
+                    </td>                  
+                  </tr>
+                  @endforeach
+
+                </tbody>
+              </table>
+
+                {{-- Ends --}}
+
 
             </div>
           </div>
@@ -248,7 +285,7 @@
                 
                 <div class="row mb-3"> 
                   <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-warning">Add this Item</button>
+                    <button type="submit" class="btn btn-warning" value="save">Add this Item</button>
                   </div>
                 </div>
 
@@ -260,6 +297,58 @@
         </div>
 
         {{-- End Form for Popualr Items --}}
+
+        {{-- Form for all foods --}}
+        <div class="col-lg-6">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Manage All Foods</h5>
+                  <!-- General Form Elements -->
+                  <form action="{{url('/allfoods')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="row mb-3">
+                          <label for="inputText" class="col-sm-3 col-form-label">Food type</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="food_type" placeholder="Food type">
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                          <label for="inputNumber" class="col-sm-3 col-form-label">Upload Image</label>
+                          <div class="col-sm-10">
+                              <input class="form-control" type="file" id="formFile" name="image">
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                          <label for="inputText" class="col-sm-3 col-form-label">Food Name</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="food_name" placeholder="Food Name">
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                          <label for="inputText" class="col-sm-3 col-form-label">Description</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="description" placeholder="Description">
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                          <label for="inputText" class="col-sm-3 col-form-label">Price</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="price" placeholder="Price">
+                          </div>
+                      </div>
+                      <div class="row mb-3"> 
+                          <div class="col-sm-12 text-center">
+                              <button type="submit" class="btn btn-warning" value="save">Add this Item</button>
+                              
+                          </div>
+                      </div>
+                  </form><!-- End General Form Elements -->
+              </div>
+          </div>
+      </div>
+      
+        {{-- End Form for all foods--}}
+
 
         
       </div>

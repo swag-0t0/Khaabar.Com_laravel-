@@ -19,7 +19,7 @@
                     <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" />
                 </div>
             </form>
-            <div>
+            <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
                 <ul class="d-flex align-items-center" style="list-style-type: none;">
                     <li class="nav-item dropdown pe-3">
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -50,8 +50,8 @@
 </nav>
 @endsection
 
-@extends('home.master')
 
+@extends('home.master')
 
 
 @section('footer')

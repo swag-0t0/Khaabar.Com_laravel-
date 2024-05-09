@@ -90,7 +90,7 @@
       <li class="nav-item">         
            <a class="nav-link collapsed" href="{{url('admintables')}}">
               <i class="bi bi-circle"></i>
-              <span>All Users</span>
+              <span>All Data</span>
             </a>      
       </li><!-- End Tables Nav -->
 

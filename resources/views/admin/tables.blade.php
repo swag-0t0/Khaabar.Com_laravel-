@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>All Users </title>
+  <title>All Data </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -23,8 +23,7 @@
 
   <!-- Template Main CSS File -->
   <link href="admin-assets/css/adminstyle.css" rel="stylesheet">
-
-
+  
 </head>
 
 <body>
@@ -35,10 +34,10 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>All Users</h1>
+      <h1>All Data</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="admin-index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('admin.adminhome')}}">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
@@ -72,20 +71,20 @@
                       $counter=1;
                   @endphp
 
-                  @foreach($data as $data)
+                  @foreach($data as $userdata)
                   <tr>
                     <th scope="row">{{ $counter++ }}</th>
-                    <td>{{$data->name}}</td>
-                    @if($data->role=="1")
+                    <td>{{$userdata->name}}</td>
+                    @if($userdata->role=="1")
                     <td>Admin</td>
                     @else
                     <td>Customer</td>
                     @endif
-                    <td>{{$data->created_at}}</td>
-                    @if($data->role=="0")
+                    <td>{{$userdata->created_at}}</td>
+                    @if($userdata->role=="0")
                     <td>
                       <div class="button-group" role="group">
-                          <a href="{{url('/deleteuser',$data->id)}}" class="btn btn-sm "><i class="bi bi-trash "></i></a> <!-- Delete Icon -->
+                          <a href="{{url('/deleteuser',$userdata->id)}}" class="btn btn-sm "><i class="bi bi-trash "></i></a> <!-- Delete Icon -->
                            <a href="#" class="btn btn-sm "><i class="bi bi-pencil "></i></a> <!-- Update Icon -->
                       </div>
                     </td>
@@ -100,6 +99,63 @@
 
             </div>
           </div>
+
+
+
+
+
+            {{-- updating and showing all the foods --}}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">All Foods In Stock</h5>
+
+              <!-- Table with hoverable rows -->
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Food Type</th>
+                    <th scope="col">Food name</th>         
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  @php
+                      $counter=1;
+                  @endphp
+
+                  @foreach ($food as $fooditem)
+                  <tr>
+                    <th scope="row">{{ $counter++ }}</th>
+                    <td><img height="60px" width="80px" src="allfoods_image/{{$fooditem->image}}" alt=""></td>             
+                    <td>{{$fooditem->food_type}}</td>              
+                    <td>{{$fooditem->food_name}}</td>                   
+                    <td>{{$fooditem->price}}</td>                
+                    <td>
+                      <div class="button-group" role="group">
+                          <a href="{{url('allfoodsdelete',$fooditem->id)}}" class="btn btn-sm "><i class="bi bi-trash "></i></a> <!-- Delete Icon -->
+                           <a href="{{url('allfoodsupdateview',$fooditem->id)}}" class="btn btn-sm "><i class="bi bi-pencil "></i></a> <!-- Update Icon -->
+                      </div>
+                    </td> 
+                 
+                    
+                  </tr>  
+                  @endforeach
+                </tbody>
+              </table>
+              <!-- End Table with hoverable rows -->
+            </div>
+          </div>
+          {{-- Ends all the foods --}}
+
+
+
+
+
+
         </div>
       </div>
     </section>

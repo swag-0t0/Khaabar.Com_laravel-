@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Advertise;
+use App\Models\allfoods;
 
 use Hash;
 use Session;
@@ -42,6 +43,7 @@ class LoginController extends Controller
     public function loginuser(Request $request)
     {
         $data=advertise::all();
+        $food=allfoods::all();
 
         $request->validate([
             'email'=>'required|email',
@@ -53,9 +55,9 @@ class LoginController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginid', $user->id);
                 if ($user->role === "0") {
-                    return view('home.after-user-login',compact('data'));
+                    return view('home.after-user-login',compact('data','food'));
                 } else {
-                    return view('home.after-admin-login',compact('data'));
+                    return view('home.after-admin-login',compact('data','food'));
                 }
             }
         }

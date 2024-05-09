@@ -63,6 +63,7 @@
 
 @extends('home.master')
 
+
 @section('footer')
     <section class="py-0 pt-7 bg-1000">
 
