@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Advertise;
 use App\Models\allfoods;
@@ -42,30 +43,38 @@ class LoginController extends Controller
 
     public function loginuser(Request $request)
     {
-        $data=advertise::all();
-        $food=allfoods::all();
-
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required|min:4|max:32'
+            'email' => 'required|email',
+            'password' => 'required|min:4|max:32'
         ]);
-        $user = User::where('email', '=', $request->email)->first();
-        echo $user->role;
-        if ($user) {
-            if (Hash::check($request->password, $user->password)) {
-                $request->session()->put('loginid', $user->id);
-                if ($user->role === "0") {
-                    return view('home.after-user-login',compact('data','food'));
-                } else {
-                    return view('home.after-admin-login',compact('data','food'));
-                }
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $data = Advertise::all();
+            $food = allfoods::all();
+            $username = $user->name;
+            $userid=$user->id;
+            if ($user->role === "0") {
+                return view('home.after-user-login', compact('data', 'food', 'username','userid'));
+            } else {
+                return view('home.after-admin-login', compact('data', 'food', 'username','userid'));
             }
         }
+
         return back()->with('fail', 'Invalid email or password');
-       
     }
+
     
     public function after_user_login(){
-        return view('home.after-user-login');
+        
+            $user = Auth::user();
+            $data = Advertise::all();
+            $food = allfoods::all();
+            $username = $user->name;
+            return view('home.after-user-login', compact('data', 'food', 'username'));
+        
+        
     }
 }

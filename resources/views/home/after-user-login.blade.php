@@ -30,12 +30,13 @@
    
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                <!-- <img src="admin-assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">-->
-                <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{$username}}</span> --}}
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{$username}}</span>
               </a> 
-   
+              
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="{{url('/cart')}}">
+                  <a class="dropdown-item d-flex align-items-center" href="{{ route('cart')}}"">
                     <i class="bi bi-gear"></i>
                     <span>My Cart</span>
                   </a>

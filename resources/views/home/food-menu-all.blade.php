@@ -19,14 +19,14 @@
   <link rel="stylesheet" type="text/css" href="menu-css/bootstrap.css" />
   <!-- Custom styles for this template -->
   <link href="menu-css/style.css" rel="stylesheet" />
-
+  <link href="assets/css/theme.css" rel="stylesheet" />
+  <link href="menu-css/style.css" rel="stylesheet" />
 
 </head>
 
 <body>
     
-@section('nav')
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
     <div class="container"><a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block"
           src="assets/img/gallery/Logo.png" width="200px" height="60px" alt="logo" /><span
           class="text-1000 fs-3 fw-bold ms-2 text-gradient"></span></a>
@@ -39,23 +39,53 @@
               class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location
             </span><span>Mirpur 1 Bus Stand, Dhaka</span></p>
         </div>
-        <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0 align-items-center">
+        <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0 align-items-center"">
           <div class="input-group-icon pe-2 align-items-center">
             <i class="fas fa-search input-box-icon text-primary" style="vertical-align: middle;"></i>
             <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food"
               aria-label="Search" />
           </div>
-        
-          <a class="btn btn-white shadow-warning text-warning" href="{{ url('/login') }}">
-            <i class="fas fa-user me-2"></i>Login/Signup
-        </a>
-          
+            
         </form>
+       
+        {{-- 
+        ---------there will be created a dropdown for user thus may he/she logout        
+        --}}
+        <ul class="d-flex align-items-center" style="list-style-type: none;">
+           <li class="nav-item dropdown pe-3">
+   
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+               <!-- <img src="admin-assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">-->
+                {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{$username}}</span> --}}
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{$username}}</span>
+              </a> 
+              
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="{{ route('cart')}}"">
+                    <i class="bi bi-gear"></i>
+                    <span>My Cart</span>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>   
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="{{ url('/') }}">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sign Out</span>
+                  </a>
+                </li>
+   
+              </ul>
+            </li>
+   
+        </ul>
+                {{-- end of dropdown --}}
+      
       </div>
     </div>
   </nav>
-@endsection
-
   
   <!-- food section -->
 
@@ -68,89 +98,90 @@
       </div>
 
      
-        <div class="filters-content">
+      <div class="filters-content">
         <div class="row grid">
-          @foreach ($food as $item)
-          <div class="col-sm-6 col-lg-4 all {{strtolower($item->food_type)}}.">
-            <div class="box">
-              <div>
-                <div class="img-box">
-                  <img src="allfoods_image/{{$item->image}}" alt="">
+            @foreach ($food as $item)
+            
+                <div class="col-sm-6 col-lg-4 all {{strtolower($item->food_type)}}">
+                    
+                    <div class="box">
+                        <form id="add-to-cart-form" action="{{route('addcart',$item->id)}}" method="POST" >
+                          @csrf
+                         <div>
+                            <div class="img-box">
+                                <img src="allfoods_image/{{ $item->image }}" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h5>{{ $item->food_name }}</h5>
+                                <p>{{ $item->description }}</p>
+                                <div class="options">
+                                    <h6>{{ $item->price }}</h6>                    
+                                    <a href="#" class="add-to-cart" data-id="{{ $item->id }}" data-name="{{ $item->food_name }}" data-price="{{ $item->price }}" data-image="allfoods_image/{{ $item->image }}">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                                        <g>
+                                        <g>
+                                            <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                                        c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                                        </g>
+                                        </g>
+                                        <g>
+                                        <g>
+                                            <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                                        C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                                        c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                                        C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                                        </g>
+                                        </g>
+                                        <g>
+                                        <g>
+                                            <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                                        c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                                        </g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                        <g>
+                                        </g>
+                                    </svg>
+                                    </a>      
+                                                                                             
+                                </div>
+                            </div>
+                          </div>
+                        </form> 
+                    </div>
+                     
                 </div>
-                <div class="detail-box">
-                  <h5>
-                    {{$item->food_name}}
-                  </h5>
-                  <p>
-                    {{$item->description}}
-                  </p>
-                  <div class="options">
-                    <h6>
-                      {{$item->price}}
-                    </h6>
-                    <a href="">
-                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                        <g>
-                          <g>
-                            <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                          </g>
-                        </g>
-                        <g>
-                          <g>
-                            <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                          </g>
-                        </g>
-                        <g>
-                          <g>
-                            <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                          </g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                        <g>
-                        </g>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          @endforeach
+                                   
+            @endforeach
         </div>
-      </div>
-     
+    </div>
      
 
 
@@ -160,7 +191,7 @@
 
   <!-- end food section -->
 
-  @section('footer')
+
     <section class="py-0 pt-7 bg-1000">
 
       <div class="container">
@@ -243,42 +274,7 @@
              
             </ul>
           </div>
-          <div class="col-12 col-md-8 col-lg-6 col-xxl-4">
-            <h5 class="lh-lg fw-bold text-500">FOLLOW US</h5>
-            <div class="text-start my-3"> <a href="#!">
-                <svg class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true" focusable="false"
-                  data-prefix="fab" data-icon="instagram" role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512">
-                  <path fill="#BDBDBD"
-                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
-                  </path>
-                </svg></a><a href="#!">
-                <svg class="svg-inline--fa fa-facebook fa-w-16 fs-2 mx-2" aria-hidden="true" focusable="false"
-                  data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512">
-                  <path fill="#BDBDBD"
-                    d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z">
-                  </path>
-                </svg></a><a href="#!">
-                <svg class="svg-inline--fa fa-twitter fa-w-16 fs-2 mx-2" aria-hidden="true" focusable="false"
-                  data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512">
-                  <path fill="#BDBDBD"
-                    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
-                  </path>
-                </svg></a></div>
-            <h3 class="text-500 my-4">Receive exclusive offers and <br />discounts in your mailbox</h3>
-            <div class="row input-group-icon mb-5">
-              <div class="col-auto"><i class="fas fa-envelope input-box-icon text-500 ms-3"></i>
-                <input class="form-control input-box bg-800 border-0" type="email" placeholder="Enter Email"
-                  aria-label="email" />
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-primary" type="submit">Subscribe</button>
-              </div>
-            </div>
-          </div>
-        </div>
+          
         <hr class="border border-800" />
         <div class="row flex-center pb-3">
           <div class="col-md-6 order-0">
@@ -291,7 +287,8 @@
       </div><!-- end of .container-->
 
     </section>
-@endsection
+
+   
   
   <!-- jQery -->
   <script src="menu-js/jquery-3.4.1.min.js"></script>
@@ -300,8 +297,9 @@
   <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script> 
 
 <!-- // isotope js -->
-  <script>
-$(window).on('load', function () {
+
+<script>
+   $(window).on('load', function () {
 
     var $grid = $(".grid").isotope({
         itemSelector: ".all",
@@ -310,9 +308,36 @@ $(window).on('load', function () {
             columnWidth: ".all"
         }
     })
-});
+ });
 
-  </script>
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const cartButtons = document.querySelectorAll('.add-to-cart');
+      cartButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+              e.preventDefault();
+              const productId = button.getAttribute('data-id');
+              const productName = button.getAttribute('data-name');
+              const productPrice = button.getAttribute('data-price');
+              const productImage = button.getAttribute('data-image');
+
+              let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+              let product = cart.find(item => item.id === productId);
+
+              if (product) {
+                  product.quantity += 1;
+              } else {
+                  product = { id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 };
+                  cart.push(product);
+              }
+
+              sessionStorage.setItem('cart', JSON.stringify(cart));
+              alert('Product added to cart');
+          });
+      });
+  });
+</script>
 
 </body>
 

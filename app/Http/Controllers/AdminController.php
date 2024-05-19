@@ -1,32 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\advertise;
 use App\Models\allfoods;
 
+
 //Vai ekhan theke admin er crud chole just nothing-else
 class AdminController extends Controller
 {
     public function adminhome(){
-        return view('admin.adminhome');
+        $user = Auth::user(); 
+        $username = $user->name;
+        return view('admin.adminhome',compact('username'));
     }
     public function adminform(){
         $data=advertise::all();
-        return view('admin.form',compact('data'));
+        $user = Auth::user(); 
+        $username = $user->name;
+        return view('admin.form',compact('data','username'));
     }
 
     public function admintables(){
 
         $data=user::all();
         $food=allfoods::all();
-        return view('admin.tables',compact('data','food'));     //passing data,food to adminform to show
+        $user = Auth::user(); 
+        $username = $user->name;
+        return view('admin.tables',compact('data','food','username'));     //passing data,food to adminform to show
     }
 
     public function adminuserprofile(){
-        return view('admin.userprofile');
+        $user = Auth::user(); 
+        $username = $user->name;
+        return view('admin.userprofile',compact('username'));
     }
 
     public function deleteuser($id)
@@ -36,6 +45,17 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    //profile starts
+    public function profileinfo(Request $request)
+    {$user = Auth::user(); 
+        $username = $user->name;
+
+        return view('admin.profileinfo',compact('username'));
+    }
+
+
+    //profile ends
+
     //advertise starts
     public function advertise_form(Request $request){
 
@@ -44,7 +64,6 @@ class AdminController extends Controller
         $image=$request->image;
         $imagename=time().'.'.$image->getClientOriginalExtension();
         $request->image->move('advertise_image',$imagename);
-
         $data->image=$imagename;
         $data->text1=$request->text1;
         $data->text2=$request->text2;
@@ -95,6 +114,8 @@ class AdminController extends Controller
         
         $food=allfoods::all();
         $item=allfoods::find($id);
+        $user = Auth::user(); 
+        $username = $user->name;
        
         if(!$item)
         {
@@ -102,7 +123,7 @@ class AdminController extends Controller
                 
         }
         else{
-             return view('update.allfoodsupdateview',compact('food','item'));
+             return view('update.allfoodsupdateview',compact('food','item','username'));
 
         }
        

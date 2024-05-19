@@ -23,7 +23,7 @@
                 <ul class="d-flex align-items-center" style="list-style-type: none;">
                     <li class="nav-item dropdown pe-3">
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                            <span class="d-none d-md-block dropdown-toggle ps-2">{{$username}}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li>
